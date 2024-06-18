@@ -162,3 +162,7 @@
 .text-marg-3 {
   margin-right: 32px;
 }
+
+.btn-hidden {
+  display: none;
+}
