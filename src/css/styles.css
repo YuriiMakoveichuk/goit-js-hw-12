@@ -1,0 +1,164 @@
+@import url('./reset.css');
+
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #242424;
+  background-color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.form-input {
+  width: 272px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #808080;
+  padding: 8px 16px;
+  margin-right: 8px;
+}
+
+.form-input::placeholder {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #808080;
+}
+
+.form-input:hover {
+  border: 1px solid #000;
+}
+
+.form-input:focus-visible {
+  outline: 1px solid #4e75ff;
+}
+
+.form-btn {
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background-color: #4e75ff;
+  transition: background-color 250ms linear;
+}
+
+.form-btn:hover,
+.form-btn:focus {
+  background-color: #6c8cff;
+}
+
+.loader {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  animation: rotate 1.5s ease-in infinite alternate;
+  margin: 0 auto;
+  /* z-index: 100; */
+}
+
+.loader::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #FF3D00;
+  background: currentColor;
+  width: 64px;
+  height: 32px;
+  border-radius: 0 0 50px 50px;
+}
+
+.loader::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  background: black;
+  width: 8px;
+  height: 64px;
+  animation: rotate 1.2s linear infinite alternate-reverse;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  width: 1158px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.album-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+.album-item {
+  width: calc((100% - 48px) / 3);
+  border: 1px solid #808080;
+  border-radius: 5px;
+}
+
+.album-img {
+  height: 150px;
+  width: 100%;
+}
+
+.statistics-list {
+  display: flex; 
+  padding: 4px 25px 4px 20px;
+  text-align: center;
+}
+
+.statistics-text {
+  font-weight: 600;
+  line-height: 1.33333;
+}
+
+.text-marg-1 {
+  margin-right: 28px;
+}
+
+.text-marg-2 {
+  margin-right: 27px;
+}
+
+.text-marg-3 {
+  margin-right: 32px;
+}
