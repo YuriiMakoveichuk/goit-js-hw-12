@@ -117,6 +117,10 @@
   margin: 0 auto;
 }
 
+.album-section {
+  text-align: center;
+}
+
 .album-list {
   display: flex;
   flex-wrap: wrap;
@@ -127,6 +131,7 @@
   line-height: 2;
   letter-spacing: 0.04em;
   color: #2e2f42;
+  margin-bottom: 30px;
 }
 
 .album-item {
