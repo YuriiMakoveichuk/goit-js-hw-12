@@ -1,7 +1,5 @@
 import Axios from 'axios';
 
-let newPage = 1;
-
 const axios = Axios.create({
   baseURL: 'https://pixabay.com/api/',
   params: {
@@ -13,12 +11,11 @@ const axios = Axios.create({
   },
 });
 
-export async function userRequest(userSearch) {
+export async function userRequest(userSearch, newPage) {
   try {
     const res = await axios.get('', {
-      params: { q: userSearch },
+      params: { q: userSearch, page: newPage },
     });
-    console.log(res);
     return res.data;
   } catch (err) {
     console.log('server error', err);

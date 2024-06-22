@@ -15,14 +15,22 @@ const album = new SimpleLightbox('.album-list a', {
   captionDelay: 250,
 });
 
-const request = searchForm.addEventListener('submit', async e => {
+let userSearch;
+let newPage;
+let maxPage;
+
+searchForm.addEventListener('submit', async e => {
   e.preventDefault();
   ulElem.innerHTML = '';
-  const userSearch = e.target.elements.text.value.trim();
+  userSearch = e.target.elements.text.value.trim();
+  newPage = 1;
+  btnHideLoadMore();
   if (userSearch !== '') {
     showLoader();
     try {
-      const data = await userRequest(userSearch);
+      btnHideLoadMore();
+      const data = await userRequest(userSearch, newPage);
+      maxPage = Math.ceil(data.totalHits / data.hits.length);
       if (data.hits.length === 0) {
         iziToast.error({
           message:
@@ -33,19 +41,33 @@ const request = searchForm.addEventListener('submit', async e => {
       } else {
         ulElem.innerHTML = galleriesTemplate(data.hits);
         album.refresh();
-        showLoadMore();
+        updateBtnLoadMore();
       }
     } catch (err) {
       console.log(err);
     }
     hideLoader();
+  } else {
+    btnHideLoadMore();
   }
 
   searchForm.reset();
 });
 
 btnElem.addEventListener('click', async () => {
-  console.log('hello');
+  showLoader();
+  newPage += 1;
+  btnHideLoadMore();
+  try {
+    const data = await userRequest(userSearch, newPage);
+    ulElem.insertAdjacentHTML('beforeend', galleriesTemplate(data.hits));
+    scrollPage();
+  } catch (err) {
+    console.log(err);
+  }
+
+  hideLoader();
+  updateBtnLoadMore();
 });
 
 function showLoader() {
@@ -56,10 +78,32 @@ function hideLoader() {
   loader.classList.add('hidden');
 }
 
-function showLoadMore() {
+function updateBtnLoadMore() {
+  if (newPage < maxPage) {
+    btnShowLoadMore();
+  } else {
+    btnHideLoadMore();
+    iziToast.info({
+      message: "We're sorry, but you've reached the end of search results.",
+      position: 'topRight',
+      timeout: 2000,
+    });
+  }
+}
+
+function btnShowLoadMore() {
   btnElem.classList.remove('btn-hidden');
 }
 
-function hideLoadMore() {
+function btnHideLoadMore() {
   btnElem.classList.add('btn-hidden');
+}
+
+function scrollPage() {
+  const liElem = ulElem.children[0];
+  const heightCart = liElem.getBoundingClientRect().height;
+  window.scrollBy({
+    top: heightCart * 3,
+    behavior: 'smooth',
+  });
 }
