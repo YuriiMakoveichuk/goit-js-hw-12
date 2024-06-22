@@ -65,7 +65,6 @@ btnElem.addEventListener('click', async () => {
   } catch (err) {
     console.log(err);
   }
-
   hideLoader();
   updateBtnLoadMore();
 });
@@ -86,7 +85,7 @@ function updateBtnLoadMore() {
     iziToast.info({
       message: "We're sorry, but you've reached the end of search results.",
       position: 'topRight',
-      timeout: 2000,
+      timeout: 3000,
     });
   }
 }
