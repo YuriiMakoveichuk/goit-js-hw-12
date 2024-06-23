@@ -61,6 +61,7 @@ btnElem.addEventListener('click', async () => {
   try {
     const data = await userRequest(userSearch, newPage);
     ulElem.insertAdjacentHTML('beforeend', galleriesTemplate(data.hits));
+    album.refresh();
     scrollPage();
   } catch (err) {
     console.log(err);
